@@ -17,6 +17,8 @@ new class extends Component {
 
     public int $country_id = 0;
 
+    public int $filterCount = 0;
+
     public bool $drawer = false;
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
@@ -27,6 +29,26 @@ new class extends Component {
         $this->reset();
         $this->resetPage();
         $this->success('Filters cleared.', position: 'toast-bottom');
+    }
+
+    public function updatedSearch($value)
+    {
+            // Jika hasil pencarian tidak kosong, tambahkan filterCount
+        if (!empty(trim($value))) {
+            $this->filterCount++;
+        } else {
+            // Reset filterCount jika pencarian kosong
+            $this->filterCount = 0;
+        }
+    }
+
+    public function updatedCountryId($value)
+    {
+        if ($value == 0) {
+            $this->filterCount--;
+        } else {
+            $this->filterCount++;
+        }
     }
 
     // Reset pagination when any component property changes
@@ -87,7 +109,7 @@ new class extends Component {
             <x-input placeholder="Search..." wire:model.live.debounce="search" clearable icon="o-magnifying-glass" />
         </x-slot:middle>
         <x-slot:actions>
-            <x-button label="Filters" @click="$wire.drawer = true" responsive icon="o-funnel" />
+            <x-button label="Filters" @click="$wire.drawer = true" responsive icon="o-funnel" :badge="$filterCount  > 0 ? $filterCount : null" />
         </x-slot:actions>
     </x-header>
 
