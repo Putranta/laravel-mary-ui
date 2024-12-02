@@ -9,6 +9,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- TinyMCE --}}
+    <script src="https://cdn.tiny.cloud/1/ltx2i0i5ckkd0qz95tu9sep4j77rh4z81zizib19cnst238a/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
 
