@@ -107,11 +107,12 @@ new class extends Component {
     <!-- HEADER -->
     <x-header title="Users" separator progress-indicator>
         <x-slot:middle class="!justify-end">
-            <x-input placeholder="Search..." wire:model.live.debounce="search" clearable icon="o-magnifying-glass" />
+            <x-input placeholder="Search..." wire:model.live.debounce="search" clearable icon="o-magnifying-glass" @click.stop="$dispatch('mary-search-open')" />
         </x-slot:middle>
         <x-slot:actions>
             <x-button label="Filters" @click="$wire.drawer = true" responsive icon="o-funnel" :badge="$filterCount  > 0 ? $filterCount : null" />
             <x-button label="Create" link="/users/create" responsive icon="o-plus" class="btn-primary" />
+            <x-theme-toggle darkTheme="synthwave" lightTheme="cupcake" />
         </x-slot:actions>
     </x-header>
 
@@ -142,4 +143,5 @@ new class extends Component {
             <x-button label="Done" icon="o-check" class="btn-primary" @click="$wire.drawer = false" />
         </x-slot:actions>
     </x-drawer>
+
 </div>
